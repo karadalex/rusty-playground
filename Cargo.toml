@@ -1,0 +1,11 @@
+[package]
+name = "rusty-playground"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = "4.5.54"
+
+[[bin]]
+name = "rusty-playground"
+path = "main.rs"
