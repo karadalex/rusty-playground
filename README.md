@@ -2,7 +2,7 @@ Rust Playground
 
 ## Running the services
 
-e.g. runnin the tool_a.rs
+e.g. runnin the dummy_cli1.rs
 ```bash
-cargo run --bin tool_a -- --help
+cargo run --bin dummy_cli1 -- --help
 ```
