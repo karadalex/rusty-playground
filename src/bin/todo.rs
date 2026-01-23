@@ -1,4 +1,4 @@
-use std::io;
+use std::io::{self, Read};
 
 pub fn main() {
     let mut tasks: Vec<String> = Vec::new();
@@ -19,13 +19,26 @@ pub fn main() {
 		}
 
 		if task.eq_ignore_ascii_case("check") {
+			if tasks.is_empty() {
+				println!("\nNo tasks to remove.");
+				continue;
+			}
 			println!("\nSelect number of task to remove");
-			let mut choice: usize = 1;
-			tasks.remove(choice - 1);
-			println!("Removing task number: {}", choice);
+			let mut choice = String::new();
+			io::stdin().read_line(&mut choice).expect("Failed to read line");
+			let choice_int: usize = match choice.trim().parse() {
+				Ok(n) if n >= 1 && n <= tasks.len() => n - 1,
+				_ => {
+					println!("Invalid choice.");
+					continue;
+				}
+			};
+
+			let removed = tasks.remove(choice_int);
+			println!("Removing task number {}: {}", choice_int + 1, removed);
 			continue;
 		}
-		
+
 		tasks.push(task.to_string());
 	}
 }
