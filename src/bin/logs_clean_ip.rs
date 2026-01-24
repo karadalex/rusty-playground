@@ -2,6 +2,7 @@ use std::io::{self, BufRead, BufReader, BufWriter, Write};
 use std::fs::File;
 
 
+/// A simple program to clean log files by keeping entries with a specific IP address.
 fn main() -> io::Result<()> {
     let cwd = std::env::current_dir()?;
     println!("Working directory: {}", cwd.display());
