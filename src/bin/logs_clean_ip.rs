@@ -3,11 +3,13 @@ use std::fs::File;
 
 
 fn main() -> io::Result<()> {
+    let cwd = std::env::current_dir()?;
+    println!("Working directory: {}", cwd.display());
     println!("Enter log file path:");
     let mut filepath = String::new();
     io::stdin().read_line(&mut filepath).expect("Failed to read line");
 
-    print!("Enter IP address to clean:");
+    println!("Enter IP address to clean:");
     let mut ip_address = String::new();
     io::stdin().read_line(&mut ip_address).expect("Failed to read line");
     let ip_address = ip_address.trim();
@@ -28,7 +30,7 @@ fn main() -> io::Result<()> {
     let mut writer = BufWriter::new(cleaned_file);
 
     for log in cleaned_logs {
-        writeln!(writer, "{log}");
+        writeln!(writer, "{log}")?;
     }
 
     Ok(())
