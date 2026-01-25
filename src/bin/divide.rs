@@ -11,6 +11,7 @@ fn main() {
   let b: i32 = 0;
 
   let result: Option<i32> = divide(a, b);
+  println!("Result {}", result.unwrap()); // use this with caution, in case it is None
 
   match result {
       Some(value) => println!("Result: {}", value),
